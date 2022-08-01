@@ -2024,6 +2024,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/tasks').then(function (res) {
         _this.tasks = res.data;
       });
+    },
+    deleteTask: function deleteTask(id) {
+      var _this2 = this;
+
+      axios["delete"]('/api/tasks/' + id).then(function (res) {
+        _this2.getTasks();
+      });
     }
   },
   mounted: function mounted() {
@@ -2492,7 +2499,14 @@ var render = function render() {
       }
     }, [_c("button", {
       staticClass: "btn btn-success"
-    }, [_vm._v("Edit")])])], 1), _vm._v(" "), _vm._m(1, true)]);
+    }, [_vm._v("Edit")])])], 1), _vm._v(" "), _c("td", [_c("button", {
+      staticClass: "btn btn-danger",
+      on: {
+        click: function click($event) {
+          return _vm.deleteTask(task.id);
+        }
+      }
+    }, [_vm._v("Delete")])])]);
   }), 0)])]);
 };
 
@@ -2531,13 +2545,6 @@ var staticRenderFns = [function () {
       scope: "col"
     }
   }, [_vm._v("Delete")])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("td", [_c("button", {
-    staticClass: "btn btn-danger"
-  }, [_vm._v("Delete")])]);
 }];
 render._withStripped = true;
 
